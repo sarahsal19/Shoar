@@ -128,7 +128,7 @@ class CategoryCard extends StatelessWidget {
             ),
             Text(category.name),
             Text(
-              "${category.noOfCourses.toString()} استشاري",
+              "${category.noOfConsultants.toString()} استشاري",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],

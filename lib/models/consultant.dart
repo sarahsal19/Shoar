@@ -23,24 +23,24 @@ List<Consultant> consultants = [
     name: "محمد العقيل",
     completedPercentage: .60,
     position: "محلل مالي",
-    thumbnail: "/assets/images/user.png",
+    thumbnail: "assets/images/user.png",
   ),
   Consultant(
     name: "فاطمة الدخيل",
     completedPercentage: .75,
     position: "مدققة مالية",
-    thumbnail: "/assets/images/user.png",
+    thumbnail: "assets/images/user.png",
   ),
   Consultant(
     name: "يوسف الزايد",
     completedPercentage: .75,
     position: "محاسب",
-    thumbnail: "/assets/images/user.png",
+    thumbnail: "assets/images/user.png",
   ),
   Consultant(
     name: "لولوة الاحمد",
     completedPercentage: .60,
     position: "مراجعة داخلية",
-    thumbnail: "/assets/images/user.png",
+    thumbnail: "assets/images/user.png",
   ),
 ];
