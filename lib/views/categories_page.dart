@@ -5,7 +5,7 @@ import 'category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../widgets/search_testfield.dart';
+import '../widgets/search_text_field.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
