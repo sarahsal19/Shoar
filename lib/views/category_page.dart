@@ -1,8 +1,10 @@
-import '/constants/color.dart';
+import '/constants/colors.dart';
 import '../models/consultant.dart';
-import 'details_screen.dart';
+import 'profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'widgets/custom_icon_button.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -91,9 +93,7 @@ class CourseContainer extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DetailsScreen(
-            title: consultant.position,
-          ),
+          builder: (context) => ProfilePage(),
         ),
       ),
       child: Container(

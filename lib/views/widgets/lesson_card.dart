@@ -1,12 +1,9 @@
-import 'views/landing_page.dart';
+import '/models/lesson.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class ConsultantSummaryCCard extends StatelessWidget {
+  final Lesson lesson;
+  const ConsultantSummaryCCard({Key? key, required this.lesson}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const BaseScreen(),
     );
   }
 }

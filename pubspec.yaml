@@ -20,9 +20,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  http: ^1.1.0
 
   flutter_lints: ^2.0.0
   webview_flutter: ^4.4.2
+  flutter_rating_bar: ^4.0.1
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -34,10 +36,10 @@ flutter:
   fonts:
     - family: Tajawal
       fonts:
-        - asset: lib/assets/fonts/Tajawal-Black.ttf
-        - asset: lib/assets/fonts/Tajawal-Bold.ttf 
-        - asset: lib/assets/fonts/Tajawal-ExtraBold.ttf 
-        - asset: lib/assets/fonts/Tajawal-ExtraLight.ttf 
-        - asset: lib/assets/fonts/Tajawal-Light.ttf 
-        - asset: lib/assets/fonts/Tajawal-Medium.ttf 
-        - asset: lib/assets/fonts/Tajawal-Regular.ttf
+        - asset: assets/fonts/Tajawal-Black.ttf
+        - asset: assets/fonts/Tajawal-Bold.ttf 
+        - asset: assets/fonts/Tajawal-ExtraBold.ttf 
+        - asset: assets/fonts/Tajawal-ExtraLight.ttf 
+        - asset: assets/fonts/Tajawal-Light.ttf 
+        - asset: assets/fonts/Tajawal-Medium.ttf 
+        - asset: assets/fonts/Tajawal-Regular.ttf

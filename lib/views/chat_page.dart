@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:Shoar/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'components/Avatar.dart';
+import 'widgets/avatar.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -108,7 +108,7 @@ Widget _bodyChat() {
         physics: BouncingScrollPhysics(),
         children: [
           _itemChat(
-            avatar: 'lib/assets/images/default.png', 
+            avatar: 'assets/images/default.png', 
             chat: 1,
             message:
                 'النص العربي هو نص دمج وطباعة الصناعة.',
@@ -120,7 +120,7 @@ Widget _bodyChat() {
             time: '18.00',
           ),
           _itemChat(
-            avatar: 'lib/assets/images/default.png', 
+            avatar: 'assets/images/default.png', 
             chat: 1,
             message: 'لقد نجا ليس فقط خمسة قرون، 😀',
             time: '18.00',
@@ -132,14 +132,14 @@ Widget _bodyChat() {
             time: '18.00',
           ),
           _itemChat(
-            avatar: 'lib/assets/images/default.png', 
+            avatar: 'assets/images/default.png', 
             chat: 1,
             message:
                 'النص الذي تم إنشاؤه بواسطة لوريم إيبسوم لا يحتوي على أي تكرار، ولا تحتوي على تكرار للكلمات الفكاهية المدمجة أو غير الخاصة بالشخصية.',
             time: '18.00',
           ),
           _itemChat(
-            avatar: 'lib/assets/images/default.png', 
+            avatar: 'assets/images/default.png', 
             chat: 1,
             message: '😅 😂 🤣',
             time: '18.00',
@@ -202,7 +202,7 @@ Widget _bodyChat() {
               SizedBox(height: 5),
               Text(
                 '$time',
-                style: TextStyle(color: Colors.grey.shade400),
+                style: TextStyle(color: Colors.grey.shade400),//todo: small size
               ),
             ],
           ),

@@ -3,10 +3,12 @@ import 'dart:ui';
 import 'package:Shoar/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'components/Avatar.dart';
+import 'widgets/avatar.dart';
 import 'chat_page.dart';
 
 class ChatHomePage extends StatefulWidget {
+    const ChatHomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -91,37 +93,37 @@ class _HomePageState extends State<ChatHomePage> {
           physics: BouncingScrollPhysics(),
           children: [
             _itemChats(
-              avatar: 'lib/assets/images/default.png',
+              avatar: 'assets/images/default.png',
               name: 'جوني دو',
               chat: 'نص بديل هو ببساطة النص الشكلي لصناعة الطباعة والتنسيق',
               time: '08.10',
             ),
             _itemChats(
-              avatar: 'lib/assets/images/default.png',
+              avatar: 'assets/images/default.png',
               name: 'أدريان',
               chat: 'ماعدا الطعن عن نقطة برويدنت',
               time: '03.19',
             ),
             _itemChats(
-              avatar: 'lib/assets/images/default.png',
+              avatar: 'assets/images/default.png',
               name: 'فيونا',
               chat: 'مرحبا 😎',
               time: '02.53',
             ),
             _itemChats(
-              avatar: 'lib/assets/images/default.png',
+              avatar: 'assets/images/default.png',
               name: 'إيما',
               chat: 'تصميمات نصية متقدمة متعددة الباقين',
               time: '11.39',
             ),
             _itemChats(
-              avatar: 'lib/assets/images/default.png',
+              avatar: 'assets/images/default.png',
               name: 'ألكسندر',
               chat: 'استثناء ليس بوتيكات أو بنجمة أو نص خالية من الرسم البياني',
               time: '00.09',
             ),
             _itemChats(
-              avatar: 'lib/assets/images/default.png',
+              avatar: 'assets/images/default.png',
               name: 'ألسوهر',
               chat: 'استثناء ليس بوتيكات أو بنجمة أو نص خالية من الرسم البياني',
               time: '00.09',

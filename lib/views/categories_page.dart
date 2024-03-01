@@ -1,11 +1,11 @@
-import '/constants/color.dart';
+import '/constants/colors.dart';
 import '/constants/size.dart';
 import '/models/category.dart';
 import 'category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../widgets/search_text_field.dart';
+import 'widgets/search_text_field.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
