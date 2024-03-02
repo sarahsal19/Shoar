@@ -21,6 +21,7 @@ class _BaseScreenState extends State<BaseScreen> {
     ChatHomePage(),
     CategoriesScreen(),
   ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +37,7 @@ class _BaseScreenState extends State<BaseScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'حسابي',
+              
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.chat),
@@ -51,6 +53,10 @@ class _BaseScreenState extends State<BaseScreen> {
             setState(() {
               _selectedIndex = index;
             });
+            labelStyle: TextStyle(
+        fontFamily: 'Tajawal', // Change to the desired font family
+        // You can also customize other text properties here
+      );
           }),
     );
   }

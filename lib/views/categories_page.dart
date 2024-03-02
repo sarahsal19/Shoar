@@ -1,6 +1,7 @@
 import '/constants/colors.dart';
 import '/constants/size.dart';
 import '/models/category.dart';
+import 'ai_page.dart';
 import 'category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,10 +27,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             Body(),
           ],
         ),
+     floatingActionButton: FloatingActionButton(
+  onPressed: () {
+    // Navigate to another page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DescriptionPage(), // Replace YourDestinationPage with the actual destination page
+      ),
+    );
+  },
+  backgroundColor: primaryColorBlue,
+   mini: true,  // Make the button smaller
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12.0), // Adjust the border radius as needed
+  ),
+    child: ColorFiltered(
+    colorFilter: ColorFilter.mode(
+      Colors.white, // Change to the desired color
+      BlendMode.srcIn,
+    ),
+    child: Icon(Icons.help),
+  ),
+),
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
       ),
     );
   }
 }
+
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -39,24 +66,27 @@ class Body extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 0, left: 20, right: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "المزيد",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: primaryColorBlue),
-                ),
-              ),
-              Text(
-                "الأقسام",
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+             TextButton(
+  onPressed: () {},
+  child: Text(
+    "المزيد",
+    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: primaryColorBlue,
+          fontFamily: 'Tajawal', 
+        ),
+  ),
+),
+Text(
+  "الأقسام",
+  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+          color: primaryColorBlue,
+          fontFamily: 'Tajawal', 
+        ),
+),
             ],
           ),
         ),
@@ -64,7 +94,6 @@ class Body extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
-            vertical: 8,
           ),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -101,7 +130,7 @@ class CategoryCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.only(top:10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -114,22 +143,19 @@ class CategoryCard extends StatelessWidget {
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            
+             Text(category.name,
+             style: Theme.of(context).textTheme.labelLarge?.copyWith(
+          fontFamily: 'Tajawal', 
+        ),),
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.center,
               child: Image.asset(
                 category.thumbnail,
-                height: kCategoryCardImageSize,
+                height: 170,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(category.name),
-            Text(
-              "${category.noOfConsultants.toString()} استشاري",
-              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),
@@ -174,7 +200,9 @@ class AppBar extends StatelessWidget {
           child: Text(
             "مرحبا, أفنان",
             textAlign: TextAlign.right,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          fontFamily: 'Tajawal',
+            ),
           ),
         ),
             ],

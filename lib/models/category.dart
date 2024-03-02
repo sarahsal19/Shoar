@@ -14,21 +14,21 @@ List<Category> categoryList = [
   Category(
     name: 'البرمجة',
     noOfConsultants: 55,
-    thumbnail: 'assets/images/laptop.jpg',
+    thumbnail: 'assets/images/it.png',
   ),
   Category(
     name: 'المالية',
     noOfConsultants: 20,
-    thumbnail: 'assets/images/accounting.jpg',
+    thumbnail: 'assets/images/finance.png',
   ),
   Category(
     name: 'التصوير',
     noOfConsultants: 16,
-    thumbnail: 'assets/images/photography.jpg',
+    thumbnail: 'assets/images/law.png',
   ),
   Category(
     name: 'التصميم',
     noOfConsultants: 25,
-    thumbnail: 'assets/images/design.jpg',
+    thumbnail: 'assets/images/architecture.png',
   ),
 ];

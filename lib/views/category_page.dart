@@ -4,6 +4,7 @@ import 'profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'widgets/custom_app_bar.dart';
 import 'widgets/custom_icon_button.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -15,8 +16,14 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
+    @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
+    return Scaffold(
+       appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(170), // Adjust the height as needed
+child: CustomAppBar(text: "المالية"),
+      ),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
         body: SafeArea(
@@ -26,30 +33,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end, 
               children: [
-                Stack(
-                  children: [
-                     Align(
-  child: Padding(
-    padding: const EdgeInsets.only(top: 20), 
-    child: Text(
-      'المالية',
-      style: Theme.of(context).textTheme.displayMedium,
-    ),
-    
-  ),
-),
-
-                    Positioned(
-                      right: 0,
-                      child: CustomIconButton(
-                        child: const Icon(Icons.arrow_right, color: primaryColorBlue),
-                        height: 35,
-                        width: 35,
-                        onTap: () => Navigator.pop(context),
-                      ),
-                    ),
-                  ],
-                ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -74,6 +57,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
           ),
         ),
+      ),
       ),
     );
   }
@@ -120,11 +104,14 @@ class CourseContainer extends StatelessWidget {
                 children: [
                   Text(
                     consultant.name,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          fontFamily: 'Tajawal', ),
                     textAlign: TextAlign.right,
                   ),
                   Text(
                     consultant.position,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          fontFamily: 'Tajawal', ),
                     textAlign: TextAlign.right,
                   ),
                   const SizedBox(
