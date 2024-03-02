@@ -5,12 +5,12 @@ import 'search_text_field.dart';
 class CustomHeaderContainer extends StatelessWidget {
   final String title;
 
-  const CustomHeaderContainer({Key? key, required this.title}) : super(key: key);
+  const CustomHeaderContainer({Key? key, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
       height: 170,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -27,27 +27,52 @@ class CustomHeaderContainer extends StatelessWidget {
           ],
         ),
       ),
-      child: Column(
+      child: Stack(
+        fit: StackFit.expand,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  textAlign: TextAlign.right,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontFamily: 'Tajawal',
-                      ),
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/background.png",
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              automaticallyImplyLeading: false,
+              elevation: 0,
+              flexibleSpace: Padding(
+                padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            title,
+                            textAlign: TextAlign.right,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontFamily: 'Tajawal',
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    SearchTextField(),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          SearchTextField(),
         ],
       ),
     );

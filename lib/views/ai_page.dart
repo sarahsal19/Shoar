@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import '../constants/colors.dart';
-import 'categories_page.dart';
-import 'widgets/custom_app_bar.dart';
-
+import '/constants/colors.dart';
 
 class DescriptionPage extends StatefulWidget {
-    const DescriptionPage({Key? key}) : super(key: key);
+  const DescriptionPage({Key? key}) : super(key: key);
 
   @override
   _DescriptionPageState createState() => _DescriptionPageState();
@@ -78,9 +74,42 @@ class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(170), // Adjust the height as needed
-        child: CustomAppBar(text: "دلني"),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(
+              Icons.arrow_forward_ios,
+              size: 25,
+              color: Colors.white,
+            ),
+          ),
+        ],
+        flexibleSpace: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/background.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                automaticallyImplyLeading: false,
+                elevation: 0,
+              ),
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -94,7 +123,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 fontSize: 18,
-                fontFamily: 'Tajawal',
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -106,24 +134,22 @@ class _DescriptionPageState extends State<DescriptionPage> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-fontFamily: 'Tajawal'              ),
+              ),
             ),
             SizedBox(height: 30),
             TextField(
               controller: _textEditingController,
-              maxLines: 5,
+              maxLines: 3,
               textAlign: TextAlign.right,
               textDirection: TextDirection.rtl,
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
                 hintText:
                     'مثال: كيف يمكنني التخطيط للتقاعد وبناء خطة تقاعد فعّاله',
-                border: OutlineInputBorder(),
-                 hintStyle: TextStyle(
-      fontFamily: 'Tajawal', // Set your desired font family
-      fontSize: 16, // Set your desired font size
-      // Other text style properties can be added here
-    ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.white), // Set border color to white
+                ),
               ),
             ),
             SizedBox(height: 30),
@@ -131,19 +157,20 @@ fontFamily: 'Tajawal'              ),
               onPressed:
                   _isButtonEnabled ? () => _submitDescription(context) : null,
               style: ElevatedButton.styleFrom(
-                // primary: Color.fromARGB(255, 207, 247, 211),
-                // onPrimary: Color.fromARGB(255, 20, 19, 19),
+                backgroundColor: primaryColorTurquoise, // Set background color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              child: _isLoading ? CircularProgressIndicator() : Text(
-  'ارسال',
-  style: TextStyle(
-    fontFamily: 'Tajawal', // Set your desired font family
-
-  ),
-),
+              child: _isLoading
+                  ? CircularProgressIndicator()
+                  : Text(
+                      'أرشدني',
+                      style: TextStyle(
+                        color: Color.fromARGB(
+                            255, 246, 243, 243), // Set text color
+                      ),
+                    ),
             ),
           ],
         ),
@@ -198,9 +225,8 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(170), // Adjust the height as needed
-child: CustomAppBar(text: "ai results"),
+      appBar: AppBar(
+        title: Text('Result Page'),
       ),
       body: Center(
         child: Column(
@@ -213,9 +239,7 @@ child: CustomAppBar(text: "ai results"),
             SizedBox(height: 20),
             Text(
               'Response from chatGPTAPI: $response',
-              style: TextStyle(fontSize: 20,
-                            fontFamily: "Tajawal" 
-),
+              style: TextStyle(fontSize: 20),
             ),
           ],
         ),

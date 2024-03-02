@@ -1,29 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import '/constants/colors.dart';
+import 'chat_page.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          color: Colors.white,
-          onPressed: () {},
-        ),
-        backgroundColor:
-            Color(0xFF7dc297), // Set background color of the app bar
-        title: Align(
-          alignment: Alignment.centerRight,
-          child: Text(
-            'نبذه عني', // Title in Arabic
-            textAlign: TextAlign.right,
-            style: TextStyle(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        elevation: 0, // Remove the shadow
+        // Set background color of the app bar
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              // Implement your back button functionality here
+              Navigator.of(context).pop();
+            },
+            child: Icon(
+              Icons.arrow_forward_ios,
+              size: 25,
               color: Colors.white,
-              fontFamily: "Tajawal" 
             ),
           ),
+        ],
+        flexibleSpace: Stack(
+          children: [
+            // Background image
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/background.png", // Replace with your image path
+                fit: BoxFit.cover,
+              ),
+            ),
+            // Rest of the app bar content
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                automaticallyImplyLeading: false,
+                elevation: 0,
+              ),
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -44,8 +67,14 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                              fontFamily: "Tajawal" 
-
+              ),
+            ),
+            SizedBox(width: 30),
+            Text(
+              'مستشار مالي', // Arabic Name
+              style: TextStyle(
+                fontSize: 14,
+                color: primaryColorBlue,
               ),
             ),
             SizedBox(height: 10),
@@ -54,35 +83,16 @@ class ProfilePage extends StatelessWidget {
               'مستشار مالي مرخص بالسعودية (ترخيص 579046) خبرة مصرفية ومالية تتجاوز ال 25 عاماً، ماجستير علوم مالية',
               textAlign: TextAlign.right,
               style: TextStyle(
-                              fontFamily: "Tajawal" 
-,
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 10),
-            // Experiences Section
-            Text(
-              'الخبرات:', // Experiences Section Title
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                              fontFamily: "Tajawal" 
-
-              ),
-              textDirection: TextDirection.rtl,
-            ),
-            // List of experiences
-            buildExperienceItem('مستشار مالي', '2018 - الآن'),
-            buildExperienceItem('محلل مالي', '2015 - 2018'),
-            buildExperienceItem('محاسب', '2014 - 2015'),
             SizedBox(height: 20),
+
             // Skills
             Text(
               ':التخصصات الدقيقة', // Skills Title
               style: TextStyle(
                 fontSize: 20,
-                              fontFamily: "Tajawal" 
-,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -98,11 +108,9 @@ class ProfilePage extends StatelessWidget {
             SizedBox(height: 20),
             // Evaluation
             Text(
-              ':المراجعات', // Reviews Title
+              'التقيمات', // Reviews Title
               style: TextStyle(
                 fontSize: 20,
-                              fontFamily: "Tajawal" 
-,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -125,26 +133,26 @@ class ProfilePage extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => ChatPage()), // Navigate to ChatPage
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ChatPage()), // Navigate to ChatPage
+                  );
                 },
                 style: ElevatedButton.styleFrom(
-                  // primary: Color.fromARGB(255, 207, 247, 211),
-                  // onPrimary: Color.fromARGB(255, 20, 19, 19),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    backgroundColor: primaryColorTurquoise),
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(
-                    'ارسال طلب استشارة',
+                    'بدء المحادثة',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                    fontFamily: "Tajawal",
                       fontSize: 16,
+                      color: const Color.fromARGB(255, 243, 241, 241),
                     ),
                   ),
                 ),
@@ -153,28 +161,30 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  // Custom method to build experience list item
-  Widget buildExperienceItem(String title, String subtitle) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Expanded(
-          child: ListTile(
-            title: Text(
-              title,
-              textDirection: TextDirection.rtl,
-            ),
-            subtitle: Text(
-              subtitle,
-              textDirection: TextDirection.rtl,
-            ),
-            trailing: Icon(Icons.work, color: Colors.green),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 8,
+        selectedIconTheme: IconThemeData(color: primaryColorBlue, size: 30),
+        selectedItemColor: primaryColorBlue,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'حسابي',
           ),
-        ),
-      ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'المحادثات',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'الصفحة الرئيسية',
+          ),
+        ],
+        currentIndex: 0, // Change this index according to the current page
+        onTap: (int index) {
+          // Handle navigation here...
+        },
+      ),
     );
   }
 
@@ -182,74 +192,88 @@ class ProfilePage extends StatelessWidget {
   Widget buildSkillBox(String title) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 207, 247, 211),
+        color: Color.fromARGB(
+            255, 244, 235, 235), // Set background color to dark gray
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Color.fromARGB(255, 248, 246, 246),
-          width: 2,
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: primaryColorTurquoise, // Set text color to green
+          ),
         ),
       ),
-      child: SkillBox(title),
     );
   }
 
   // Custom method to build review item
   Widget buildReviewItem(
       String imagePath, String date, double rating, String review, int count) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            CircleAvatar(backgroundImage: AssetImage(imagePath)),
-            SizedBox(width: 10),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(date, style: TextStyle(fontSize: 10)),
-                  SizedBox(width: 20),
-                  RatingBar(
-                    initialRating: rating,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: count,
-                    ratingWidget: RatingWidget(
-                      empty: Icon(Icons.star_border, color: Colors.amber),
-                      full: Icon(Icons.star, color: Colors.amber),
-                      half: Icon(Icons.star_half, color: Colors.amber),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Color.fromARGB(255, 244, 239, 239)),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              CircleAvatar(backgroundImage: AssetImage(imagePath)),
+              SizedBox(width: 10),
+              //Text(date),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(date, style: TextStyle(fontSize: 10)),
+                    SizedBox(width: 20),
+                    RatingBar(
+                      initialRating: rating,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: count,
+                      ratingWidget: RatingWidget(
+                        empty: Icon(Icons.star_border, color: Colors.amber),
+                        full: Icon(Icons.star, color: Colors.amber),
+                        half: Icon(Icons.star_half, color: Colors.amber),
+                      ),
+                      itemSize: 20.0,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 3.0),
+                      onRatingUpdate: (rating) {
+                        print(rating);
+                      },
                     ),
-                    itemSize: 20.0,
-                    itemPadding: EdgeInsets.symmetric(horizontal: 3.0),
-                    onRatingUpdate: (rating) {
-                      print(rating);
-                    },
-                  ),
-                  SizedBox(width: 10, height: 30),
-                ],
+                    SizedBox(width: 10, height: 30),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Text(
-          review,
-          textAlign: TextAlign.right,
-          style: TextStyle(fontSize: 14),
-        ),
-        SizedBox(height: 10),
-      ],
+            ],
+          ),
+          SizedBox(height: 10),
+          Text(
+            review,
+            textAlign: TextAlign.right,
+            style: TextStyle(fontSize: 14),
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }
