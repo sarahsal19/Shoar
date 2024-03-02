@@ -20,7 +20,8 @@ class ProfilePage extends StatelessWidget {
             'نبذه عني', // Title in Arabic
             textAlign: TextAlign.right,
             style: TextStyle(
-              color: Colors.white, // Set text color to white
+              color: Colors.white,
+              fontFamily: "Tajawal" 
             ),
           ),
         ),
@@ -43,6 +44,8 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                              fontFamily: "Tajawal" 
+
               ),
             ),
             SizedBox(height: 10),
@@ -51,6 +54,8 @@ class ProfilePage extends StatelessWidget {
               'مستشار مالي مرخص بالسعودية (ترخيص 579046) خبرة مصرفية ومالية تتجاوز ال 25 عاماً، ماجستير علوم مالية',
               textAlign: TextAlign.right,
               style: TextStyle(
+                              fontFamily: "Tajawal" 
+,
                 fontSize: 16,
               ),
             ),
@@ -61,6 +66,8 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                              fontFamily: "Tajawal" 
+
               ),
               textDirection: TextDirection.rtl,
             ),
@@ -74,6 +81,8 @@ class ProfilePage extends StatelessWidget {
               ':التخصصات الدقيقة', // Skills Title
               style: TextStyle(
                 fontSize: 20,
+                              fontFamily: "Tajawal" 
+,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -92,6 +101,8 @@ class ProfilePage extends StatelessWidget {
               ':المراجعات', // Reviews Title
               style: TextStyle(
                 fontSize: 20,
+                              fontFamily: "Tajawal" 
+,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -132,6 +143,7 @@ class ProfilePage extends StatelessWidget {
                     'ارسال طلب استشارة',
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                    fontFamily: "Tajawal",
                       fontSize: 16,
                     ),
                   ),

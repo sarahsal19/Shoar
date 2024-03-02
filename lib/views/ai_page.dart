@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../constants/colors.dart';
+import 'categories_page.dart';
+import 'widgets/custom_app_bar.dart';
+
 
 class DescriptionPage extends StatefulWidget {
     const DescriptionPage({Key? key}) : super(key: key);
@@ -74,31 +78,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          color: Colors.white,
-          onPressed: () {},
-        ),
-        backgroundColor: Color(0xFF7dc297),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              'دلني',
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(width: 8),
-            Image.asset(
-              'assets/images/default.png',
-              fit: BoxFit.contain,
-              height: 32,
-            ),
-          ],
-        ),
+       appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(170), // Adjust the height as needed
+        child: CustomAppBar(text: "دلني"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -112,6 +94,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 fontSize: 18,
+                fontFamily: 'Tajawal',
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -123,7 +106,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-              ),
+fontFamily: 'Tajawal'              ),
             ),
             SizedBox(height: 30),
             TextField(
@@ -136,6 +119,11 @@ class _DescriptionPageState extends State<DescriptionPage> {
                 hintText:
                     'مثال: كيف يمكنني التخطيط للتقاعد وبناء خطة تقاعد فعّاله',
                 border: OutlineInputBorder(),
+                 hintStyle: TextStyle(
+      fontFamily: 'Tajawal', // Set your desired font family
+      fontSize: 16, // Set your desired font size
+      // Other text style properties can be added here
+    ),
               ),
             ),
             SizedBox(height: 30),
@@ -204,8 +192,9 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Result Page'),
+       appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(170), // Adjust the height as needed
+child: CustomAppBar(text: "ai results"),
       ),
       body: Center(
         child: Column(
@@ -218,7 +207,9 @@ class ResultPage extends StatelessWidget {
             SizedBox(height: 20),
             Text(
               'Response from chatGPTAPI: $response',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20,
+                            fontFamily: "Tajawal" 
+),
             ),
           ],
         ),
