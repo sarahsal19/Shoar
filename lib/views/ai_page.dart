@@ -137,7 +137,13 @@ fontFamily: 'Tajawal'              ),
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              child: _isLoading ? CircularProgressIndicator() : Text('ارسال'),
+              child: _isLoading ? CircularProgressIndicator() : Text(
+  'ارسال',
+  style: TextStyle(
+    fontFamily: 'Tajawal', // Set your desired font family
+
+  ),
+),
             ),
           ],
         ),

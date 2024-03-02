@@ -17,7 +17,7 @@ class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 2;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    DescriptionPage(),
+    CategoriesScreen(),
     ChatHomePage(),
     CategoriesScreen(),
   ];
