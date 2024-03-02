@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class ConsultantSummaryCCard extends StatelessWidget {
   final Lesson lesson;
-  const ConsultantSummaryCCard({Key? key, required this.lesson}) : super(key: key);
+  const ConsultantSummaryCCard({Key? key, required this.lesson})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,11 @@
 import '/constants/colors.dart';
-import '/constants/size.dart';
 import '/models/category.dart';
 import 'ai_page.dart';
 import 'category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'widgets/search_text_field.dart';
+import 'widgets/custom_header.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -27,36 +26,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             Body(),
           ],
         ),
-     floatingActionButton: FloatingActionButton(
-  onPressed: () {
-    // Navigate to another page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DescriptionPage(), // Replace YourDestinationPage with the actual destination page
-      ),
-    );
-  },
-  backgroundColor: primaryColorBlue,
-   mini: true,  // Make the button smaller
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12.0), // Adjust the border radius as needed
-  ),
-    child: ColorFiltered(
-    colorFilter: ColorFilter.mode(
-      Colors.white, // Change to the desired color
-      BlendMode.srcIn,
-    ),
-    child: Icon(Icons.help),
-  ),
-),
-
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Navigate to another page
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    DescriptionPage(), // Replace YourDestinationPage with the actual destination page
+              ),
+            );
+          },
+          backgroundColor: primaryColorBlue,
+          mini: true, // Make the button smaller
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+                12.0), // Adjust the border radius as needed
+          ),
+          child: ColorFiltered(
+            colorFilter: ColorFilter.mode(
+              Colors.white, // Change to the desired color
+              BlendMode.srcIn,
+            ),
+            child: Icon(Icons.help),
+          ),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
       ),
     );
   }
 }
-
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -70,23 +69,23 @@ class Body extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             TextButton(
-  onPressed: () {},
-  child: Text(
-    "المزيد",
-    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: primaryColorBlue,
-          fontFamily: 'Tajawal', 
-        ),
-  ),
-),
-Text(
-  "الأقسام",
-  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-          color: primaryColorBlue,
-          fontFamily: 'Tajawal', 
-        ),
-),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "المزيد",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: primaryColorBlue,
+                        fontFamily: 'Tajawal',
+                      ),
+                ),
+              ),
+              Text(
+                "الأقسام",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: primaryColorBlue,
+                      fontFamily: 'Tajawal',
+                    ),
+              ),
             ],
           ),
         ),
@@ -130,7 +129,7 @@ class CategoryCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: const EdgeInsets.only(top:10),
+        padding: const EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -145,11 +144,12 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            
-             Text(category.name,
-             style: Theme.of(context).textTheme.labelLarge?.copyWith(
-          fontFamily: 'Tajawal', 
-        ),),
+            Text(
+              category.name,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontFamily: 'Tajawal',
+                  ),
+            ),
             Align(
               alignment: Alignment.center,
               child: Image.asset(
@@ -171,48 +171,8 @@ class AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-      height: 170,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: [0.1, 0.5],
-          colors: [
-            primaryColorGreen,
-            primaryColorGreen,
-          ],
-        ),
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-        Expanded(
-          child: Text(
-            "مرحبا, أفنان",
-            textAlign: TextAlign.right,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          fontFamily: 'Tajawal',
-            ),
-          ),
-        ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const SearchTextField()
-        ],
-      ),
+    return CustomHeaderContainer(
+      title: "مرحبا, أفنان",
     );
   }
 }

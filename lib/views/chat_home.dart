@@ -1,13 +1,13 @@
 import 'dart:ui';
 
-import 'package:Shoar/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/avatar.dart';
 import 'chat_page.dart';
+import 'widgets/custom_header.dart';
 
 class ChatHomePage extends StatefulWidget {
-    const ChatHomePage({Key? key}) : super(key: key);
+  const ChatHomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -16,65 +16,13 @@ class ChatHomePage extends StatefulWidget {
 class _HomePageState extends State<ChatHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryColorGreen,
-      body: SafeArea(
-        child: Column(
-          children: [
-            _top(),
-            _body(),
-          ],
+    return Column(
+      children: [
+        CustomHeaderContainer(
+          title: "",
         ),
-      ),
-    );
-  }
-
-  Widget _top() {
-    return Container(
-      padding: EdgeInsets.only(top: 30, left: 30, right: 30, bottom: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 25),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.black12,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'بحث',
-                            hintStyle:
-                                TextStyle(color: Colors.white.withOpacity(0.8)),
-                            border: InputBorder.none,
-                          ),
-                          style: TextStyle(color: Colors.white),
-                          maxLines: 1,
-                          minLines: 1,
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
-                      SizedBox(
-                          width:
-                              10), // Add some spacing between text field and icon
-                      Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+        _body(),
+      ],
     );
   }
 
@@ -84,8 +32,8 @@ class _HomePageState extends State<ChatHomePage> {
         padding: EdgeInsets.symmetric(horizontal: 20),
         width: double.infinity,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45), topRight: Radius.circular(45)),
+          // borderRadius: BorderRadius.only(
+          // topLeft: Radius.circular(45), topRight: Radius.circular(5)),
           color: Colors.white,
         ),
         child: ListView(
@@ -93,40 +41,34 @@ class _HomePageState extends State<ChatHomePage> {
           physics: BouncingScrollPhysics(),
           children: [
             _itemChats(
-              avatar: 'assets/images/default.png',
-              name: 'جوني دو',
-              chat: 'نص بديل هو ببساطة النص الشكلي لصناعة الطباعة والتنسيق',
-              time: '08.10',
+              avatar: 'assets/images/reda.png',
+              name: 'رضا العيدروس',
+              chat: 'الله يعافيك بالتوفيق ',
+              time: '08:10',
             ),
             _itemChats(
               avatar: 'assets/images/default.png',
-              name: 'أدريان',
-              chat: 'ماعدا الطعن عن نقطة برويدنت',
-              time: '03.19',
+              name: 'عبدالعزيز الشهري',
+              chat: 'ولا عليك أمر تفيدني بخصوص اللي سألتك عنه أمس',
+              time: '03:19',
             ),
             _itemChats(
               avatar: 'assets/images/default.png',
-              name: 'فيونا',
-              chat: 'مرحبا 😎',
-              time: '02.53',
+              name: 'سالم الصقير',
+              chat: 'مرحبا 😊',
+              time: '02:53',
             ),
             _itemChats(
               avatar: 'assets/images/default.png',
-              name: 'إيما',
-              chat: 'تصميمات نصية متقدمة متعددة الباقين',
-              time: '11.39',
+              name: 'نايف الحمد',
+              chat: 'ممتاز الله يعطيك العافية',
+              time: '11:39',
             ),
             _itemChats(
               avatar: 'assets/images/default.png',
-              name: 'ألكسندر',
-              chat: 'استثناء ليس بوتيكات أو بنجمة أو نص خالية من الرسم البياني',
-              time: '00.09',
-            ),
-            _itemChats(
-              avatar: 'assets/images/default.png',
-              name: 'ألسوهر',
-              chat: 'استثناء ليس بوتيكات أو بنجمة أو نص خالية من الرسم البياني',
-              time: '00.09',
+              name: 'أحمد اباالخيل',
+              chat: 'بكرة نتناقش فيها',
+              time: '11:10',
             ),
           ],
         ),
@@ -138,7 +80,7 @@ class _HomePageState extends State<ChatHomePage> {
     String avatar = '',
     String name = '',
     String chat = '',
-    String time = '00.00',
+    String time = '00:00',
   }) {
     return GestureDetector(
       onTap: () {
@@ -167,7 +109,7 @@ class _HomePageState extends State<ChatHomePage> {
             children: [
               // Time
               Padding(
-                padding: EdgeInsets.only(left: 10, top: 25),
+                padding: EdgeInsets.only(left: 10, top: 28),
                 child: Text(
                   '$time',
                   style: TextStyle(color: Colors.grey, fontFamily: 'Tajawal'),
@@ -175,7 +117,7 @@ class _HomePageState extends State<ChatHomePage> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 25),
+                  padding: EdgeInsets.only(top: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -197,7 +139,6 @@ class _HomePageState extends State<ChatHomePage> {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.black54,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -210,7 +151,7 @@ class _HomePageState extends State<ChatHomePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Avatar(
-                  size: 85,
+                  size: 65,
                   image: avatar,
                 ),
               ),

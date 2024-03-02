@@ -6,7 +6,7 @@ class CustomIconButton extends StatelessWidget {
   final double width;
   final Color? color;
   final VoidCallback onTap;
- 
+
   const CustomIconButton({
     Key? key,
     required this.child,
@@ -15,7 +15,7 @@ class CustomIconButton extends StatelessWidget {
     this.color = Colors.white,
     required this.onTap,
   }) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
     return Ink(
