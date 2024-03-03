@@ -4,7 +4,6 @@ import 'ai_page.dart';
 import 'category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'widgets/custom_header.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -48,10 +47,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               Colors.white, // Change to the desired color
               BlendMode.srcIn,
             ),
-            child: Icon(Icons.help),
+            child: Icon(Icons.chat),
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       ),
     );
   }

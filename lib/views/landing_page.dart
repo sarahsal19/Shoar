@@ -54,8 +54,7 @@ class _BaseScreenState extends State<BaseScreen> {
               _selectedIndex = index;
             });
             labelStyle: TextStyle(
-        fontFamily: 'Tajawal', // Change to the desired font family
-        // You can also customize other text properties here
+        fontFamily: 'Tajawal', 
       );
           }),
     );

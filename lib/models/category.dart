@@ -22,12 +22,12 @@ List<Category> categoryList = [
     thumbnail: 'assets/images/finance.png',
   ),
   Category(
-    name: 'التصوير',
+    name: 'القانون',
     noOfConsultants: 16,
     thumbnail: 'assets/images/law.png',
   ),
   Category(
-    name: 'التصميم',
+    name: 'العمارة و البناء',
     noOfConsultants: 25,
     thumbnail: 'assets/images/architecture.png',
   ),
