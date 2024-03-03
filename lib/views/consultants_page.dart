@@ -3,8 +3,6 @@ import 'profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'widgets/custom_app_bar.dart';
-
 class ConsultantsScreen extends StatefulWidget {
   const ConsultantsScreen({Key? key}) : super(key: key);
 

@@ -1,6 +1,6 @@
 import '/constants/colors.dart';
 import '/models/category.dart';
-import 'ai_page.dart';
+import 'ai_assistant_page.dart';
 import 'consultants_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

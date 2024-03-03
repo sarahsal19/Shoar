@@ -5,16 +5,15 @@ import 'profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'widgets/custom_app_bar.dart';
-
-class AiAssistanteResults extends StatefulWidget {
-  const AiAssistanteResults({Key? key}) : super(key: key);
+class AiAssistantResults extends StatefulWidget {
+  const AiAssistantResults({Key? key}) : super(key: key);
 
   @override
-  _AiAssistanteResultsScreenState createState() => _AiAssistanteResultsScreenState();
+  _AiAssistanteResultsScreenState createState() =>
+      _AiAssistanteResultsScreenState();
 }
 
-class _AiAssistanteResultsScreenState extends State<AiAssistanteResults> {
+class _AiAssistanteResultsScreenState extends State<AiAssistantResults> {
   @override
   @override
   Widget build(BuildContext context) {
@@ -56,56 +55,55 @@ class _AiAssistanteResultsScreenState extends State<AiAssistanteResults> {
           ],
         ),
       ),
-
-body: AnnotatedRegion<SystemUiOverlayStyle>(
-  value: SystemUiOverlayStyle.dark,
-  child: Scaffold(
-    body: SafeArea(
-      bottom: false,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            const SizedBox(
-              height: 15,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'اختياراتنا من الخبراء',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: primaryColorTurquoise,
-                  fontFamily: 'Tajawal',
-                  fontWeight: FontWeight.bold,
-                ),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark,
+        child: Scaffold(
+          body: SafeArea(
+            bottom: false,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'اختياراتنا من الخبراء',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: primaryColorTurquoise,
+                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.separated(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      separatorBuilder: (_, __) {
+                        return const SizedBox(
+                          height: 10,
+                        );
+                      },
+                      shrinkWrap: true,
+                      itemBuilder: (_, int index) {
+                        return CourseContainer(
+                          consultant: consultants[index],
+                        );
+                      },
+                      itemCount: consultants.length,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: ListView.separated(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                separatorBuilder: (_, __) {
-                  return const SizedBox(
-                    height: 10,
-                  );
-                },
-                shrinkWrap: true,
-                itemBuilder: (_, int index) {
-                  return CourseContainer(
-                    consultant: consultants[index],
-                  );
-                },
-                itemCount: consultants.length,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
-    ),
-  ),
-),
-
     );
   }
 }

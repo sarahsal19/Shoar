@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/constants/colors.dart';
-import 'ai_assistante_page.dart';
+import 'ai_assistant_result_page.dart';
 
 class DescriptionPage extends StatefulWidget {
   const DescriptionPage({Key? key}) : super(key: key);
@@ -37,8 +37,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
       _isLoading = true;
     });
 
-    String userDescription = _textEditingController.text;
-
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -49,20 +47,18 @@ class _DescriptionPageState extends State<DescriptionPage> {
             children: [
               CircularProgressIndicator(),
               SizedBox(height: 20),
-Text(
-  'لحظات وسنقوم بتوجيهك لقائمة الخبراء الأنسب لك',
-  textAlign: TextAlign.right,
-  style: TextStyle(
-    // Your existing style properties
-  ),
-),
+              Text(
+                'لحظات وسنقوم بتوجيهك لقائمة الخبراء الأنسب لك',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                    // Your existing style properties
+                    ),
+              ),
             ],
           ),
         );
       },
     );
-
-    String response = await chatGPTAPI(userDescription);
 
     setState(() {
       _isLoading = false;
@@ -72,8 +68,7 @@ Text(
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            AiAssistanteResults(),
+        builder: (context) => AiAssistantResults(),
       ),
     );
   }
@@ -131,8 +126,7 @@ Text(
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                                  fontFamily: 'Tajawal',
-
+                fontFamily: 'Tajawal',
               ),
             ),
             SizedBox(height: 10),
@@ -142,8 +136,7 @@ Text(
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 fontSize: 18,
-                                  fontFamily: 'Tajawal',
-
+                fontFamily: 'Tajawal',
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -156,9 +149,9 @@ Text(
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
                 hintStyle: TextStyle(
-      fontFamily: 'Tajawal', 
-      fontSize: 16,
-    ),
+                  fontFamily: 'Tajawal',
+                  fontSize: 16,
+                ),
                 hintText:
                     'مثال: كيف يمكنني التخطيط للتقاعد وبناء خطة تقاعد فعّاله',
                 border: OutlineInputBorder(
@@ -179,7 +172,6 @@ Text(
               ),
               child: _isLoading
                   ? CircularProgressIndicator()
-                  
                   : Text(
                       'أرشدني',
                       style: TextStyle(
@@ -196,7 +188,7 @@ Text(
 }
 
 final List<Map<String, String>> messages = [];
-const String OpenAiKey = 'sk-Y4GtljaCS8IHR8Q000000000000000flWT3BlbkFJp';
+const String OpenAiKey = 'sk-Y4GtljaCS8IHR8Q000000000000000flWT3BlbkFJp';//todo: constants 
 
 Future<String> chatGPTAPI(String prompt) async {
   messages.add({

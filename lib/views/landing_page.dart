@@ -1,19 +1,16 @@
 import '/constants/colors.dart';
-import 'ai_page.dart';
 import 'categories_page.dart';
-
 import 'package:flutter/material.dart';
-
 import 'chat_home.dart';
 
-class BaseScreen extends StatefulWidget {
-  const BaseScreen({Key? key}) : super(key: key);
+class LandingScreen extends StatefulWidget {
+  const LandingScreen({Key? key}) : super(key: key);
 
   @override
-  _BaseScreenState createState() => _BaseScreenState();
+  _LandingScreenState createState() => _LandingScreenState();
 }
 
-class _BaseScreenState extends State<BaseScreen> {
+class _LandingScreenState extends State<LandingScreen> {
   int _selectedIndex = 2;
 
   static const List<Widget> _widgetOptions = <Widget>[
@@ -53,7 +50,7 @@ class _BaseScreenState extends State<BaseScreen> {
             setState(() {
               _selectedIndex = index;
             });
-            labelStyle: TextStyle(
+            TextStyle(
         fontFamily: 'Tajawal', 
       );
           }),
