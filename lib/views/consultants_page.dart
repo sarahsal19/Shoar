@@ -5,21 +5,54 @@ import 'package:flutter/services.dart';
 
 import 'widgets/custom_app_bar.dart';
 
-class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
+class ConsultantsScreen extends StatefulWidget {
+  const ConsultantsScreen({Key? key}) : super(key: key);
 
   @override
-  _CategoryScreenState createState() => _CategoryScreenState();
+  _ConsultantsScreenState createState() => _ConsultantsScreenState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _ConsultantsScreenState extends State<ConsultantsScreen> {
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(170), // Adjust the height as needed
-        child: CustomAppBar(text: "المالية"),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(
+              Icons.arrow_forward_ios,
+              size: 25,
+              color: Colors.white,
+            ),
+          ),
+        ],
+        flexibleSpace: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/background.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                automaticallyImplyLeading: false,
+                elevation: 0,
+              ),
+            ),
+          ],
+        ),
       ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
