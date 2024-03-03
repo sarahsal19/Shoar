@@ -1,7 +1,7 @@
 import '/constants/colors.dart';
 import '/models/category.dart';
 import 'ai_page.dart';
-import 'category_page.dart';
+import 'consultants_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'widgets/custom_header.dart';
@@ -25,32 +25,33 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             Body(),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Navigate to another page
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    DescriptionPage(), // Replace YourDestinationPage with the actual destination page
-              ),
-            );
-          },
-          backgroundColor: primaryColorBlue,
-          mini: true, // Make the button smaller
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-                12.0), // Adjust the border radius as needed
-          ),
-          child: ColorFiltered(
-            colorFilter: ColorFilter.mode(
-              Colors.white, // Change to the desired color
-              BlendMode.srcIn,
-            ),
-            child: Icon(Icons.chat),
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+floatingActionButton: FloatingActionButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DescriptionPage(),
+      ),
+    );
+  },
+  backgroundColor: primaryColorTurquoise.withOpacity(0.50), // Adjust the opacity as needed
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(50.0),
+  ),
+  child: Container( // Wrap the Text in a Container for padding and styling
+    padding: EdgeInsets.all(8.0), // Adjust the padding as needed
+    child: Text(
+      'ارشدني',
+      style: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold, 
+        fontSize: 10,
+        fontFamily: 'Tajawal',
+      ),
+    ),
+  ),
+),
+floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       ),
     );
   }

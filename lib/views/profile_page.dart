@@ -144,7 +144,7 @@ class ProfilePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    backgroundColor: primaryColorTurquoise),
+                    backgroundColor: primaryColorTurquoise.withOpacity(0.50), ),
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(

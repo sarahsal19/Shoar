@@ -1,7 +1,9 @@
+import 'package:Shoar/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/constants/colors.dart';
+import 'ai_consultants_page.dart';
 
 class DescriptionPage extends StatefulWidget {
   const DescriptionPage({Key? key}) : super(key: key);
@@ -48,7 +50,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
             children: [
               CircularProgressIndicator(),
               SizedBox(height: 20),
-              Text('جارٍ الإرسال...'),
+              Text('لحظات وسنقوم بتوجيهك لقائمة الخبراء الأنسب لك')
             ],
           ),
         );
@@ -66,7 +68,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
       context,
       MaterialPageRoute(
         builder: (context) =>
-            ResultPage(description: userDescription, response: response),
+            AiAssistanteResults(),
       ),
     );
   }
@@ -157,13 +159,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
               onPressed:
                   _isButtonEnabled ? () => _submitDescription(context) : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColorTurquoise, // Set background color
+                backgroundColor: primaryColorTurquoise.withOpacity(0.50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
               child: _isLoading
                   ? CircularProgressIndicator()
+                  
                   : Text(
                       'أرشدني',
                       style: TextStyle(
