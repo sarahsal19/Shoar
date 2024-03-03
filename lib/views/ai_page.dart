@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/constants/colors.dart';
-import 'ai_consultants_page.dart';
+import 'ai_assistante_page.dart';
 
 class DescriptionPage extends StatefulWidget {
   const DescriptionPage({Key? key}) : super(key: key);
@@ -50,7 +50,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
             children: [
               CircularProgressIndicator(),
               SizedBox(height: 20),
-              Text('لحظات وسنقوم بتوجيهك لقائمة الخبراء الأنسب لك')
+Text(
+  'لحظات وسنقوم بتوجيهك لقائمة الخبراء الأنسب لك',
+  textAlign: TextAlign.right,
+  style: TextStyle(
+    // Your existing style properties
+  ),
+),
             ],
           ),
         );
@@ -126,6 +132,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                                  fontFamily: 'Tajawal',
+
               ),
             ),
             SizedBox(height: 10),
@@ -135,6 +143,8 @@ class _DescriptionPageState extends State<DescriptionPage> {
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 fontSize: 18,
+                                  fontFamily: 'Tajawal',
+
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -146,6 +156,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
               textDirection: TextDirection.rtl,
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
+                hintStyle: TextStyle(
+      fontFamily: 'Tajawal', 
+      fontSize: 16,
+    ),
                 hintText:
                     'مثال: كيف يمكنني التخطيط للتقاعد وبناء خطة تقاعد فعّاله',
                 border: OutlineInputBorder(

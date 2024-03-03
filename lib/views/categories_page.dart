@@ -34,7 +34,7 @@ floatingActionButton: FloatingActionButton(
       ),
     );
   },
-  backgroundColor: primaryColorTurquoise.withOpacity(0.50), // Adjust the opacity as needed
+  backgroundColor: primaryColorTurquoise.withOpacity(0.50), 
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(50.0),
   ),
@@ -125,7 +125,7 @@ class CategoryCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const CategoryScreen(),
+          builder: (context) => const ConsultantsScreen(),
         ),
       ),
       child: Container(

@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 
 import 'widgets/custom_app_bar.dart';
 
-class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
+class ConsultantsScreen extends StatefulWidget {
+  const ConsultantsScreen({Key? key}) : super(key: key);
 
   @override
-  _CategoryScreenState createState() => _CategoryScreenState();
+  _ConsultantsScreenState createState() => _ConsultantsScreenState();
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class _ConsultantsScreenState extends State<ConsultantsScreen> {
   @override
   @override
   Widget build(BuildContext context) {
