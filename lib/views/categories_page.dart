@@ -148,6 +148,7 @@ class CategoryCard extends StatelessWidget {
               category.name,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     fontFamily: 'Tajawal',
+                    fontSize: 15
                   ),
             ),
             Align(
