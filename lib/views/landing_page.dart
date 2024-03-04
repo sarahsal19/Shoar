@@ -34,7 +34,6 @@ class _LandingScreenState extends State<LandingScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'حسابي',
-              
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.chat),

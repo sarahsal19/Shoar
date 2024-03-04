@@ -5,6 +5,10 @@ import 'consultants_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'widgets/custom_header.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../constants/api_constants.dart';
+
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -14,51 +18,87 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  Future<List<Category>> _fetchCategories() async {
+    try {
+      final response = await http.get(
+        Uri.parse('${ApiConstants.baseUrl}${ApiConstants.categoriesPath}'),
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        return data.map((categoryData) => Category.fromJson(categoryData)).toList();
+      } else {
+        throw Exception('Failed to load categories');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch categories: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         body: Column(
-          children: const [
+          children: [
             AppBar(),
-            Body(),
+            FutureBuilder<List<Category>>(
+              future: _fetchCategories(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('No categories available'));
+                } else {
+                  return Body(categoryList: snapshot.data!);
+                }
+              },
+            ),
           ],
         ),
-floatingActionButton: FloatingActionButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DescriptionPage(),
-      ),
-    );
-  },
-  backgroundColor: primaryColorTurquoise.withOpacity(0.50), 
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(50.0),
-  ),
-  child: Container( // Wrap the Text in a Container for padding and styling
-    padding: EdgeInsets.all(8.0), // Adjust the padding as needed
-    child: Text(
-      'ارشدني',
-      style: TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold, 
-        fontSize: 10,
-        fontFamily: 'Tajawal',
-      ),
-    ),
-  ),
-),
-floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DescriptionPage(),
+              ),
+            );
+          },
+          backgroundColor: primaryColorTurquoise.withOpacity(0.50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50.0),
+          ),
+          child: Container(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'ارشدني',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+                fontFamily: 'Tajawal',
+              ),
+            ),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       ),
     );
   }
 }
 
+
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  final List<Category> categoryList;
+
+  const Body({
+    Key? key,
+    required this.categoryList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +151,7 @@ class Body extends StatelessWidget {
     );
   }
 }
+
 
 class CategoryCard extends StatelessWidget {
   final Category category;
