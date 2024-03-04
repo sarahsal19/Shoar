@@ -1,7 +1,10 @@
-import '../models/consultant.dart';
-import 'profile_page.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import '../constants/api_constants.dart';
+import '../models/consultant.dart';
+import 'profile_page.dart';
 
 class ConsultantsScreen extends StatefulWidget {
   const ConsultantsScreen({Key? key}) : super(key: key);
@@ -11,7 +14,38 @@ class ConsultantsScreen extends StatefulWidget {
 }
 
 class _ConsultantsScreenState extends State<ConsultantsScreen> {
+  List<Consultant> consultants = [];
+
   @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      final response = await http.get(
+        Uri.parse('${ApiConstants.baseUrl}${ApiConstants.consultantsPath}/${ApiConstants.pathVariable}'),
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        final List<Consultant> fetchedConsultants =
+            data.map((consultantData) => Consultant.fromJson(consultantData)).toList();
+
+        setState(() {
+          consultants = fetchedConsultants;
+        });
+      } else {
+        // Handle error
+        print('Failed to fetch consultants: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle exceptions
+      print('Error fetching consultants: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,37 +88,34 @@ class _ConsultantsScreenState extends State<ConsultantsScreen> {
       ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
-        child: Scaffold(
-          body: SafeArea(
-            bottom: false,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const SizedBox(
-                    height: 15,
+        child: SafeArea(
+          bottom: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(vertical: 60),
+                    separatorBuilder: (_, __) {
+                      return const SizedBox(
+                        height: 10,
+                      );
+                    },
+                    shrinkWrap: true,
+                    itemBuilder: (_, int index) {
+                      return CourseContainer(
+                        consultant: consultants[index],
+                      );
+                    },
+                    itemCount: consultants.length,
                   ),
-                  Expanded(
-                    child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(vertical: 60),
-                      separatorBuilder: (_, __) {
-                        return const SizedBox(
-                          height: 10,
-                        );
-                      },
-                      shrinkWrap: true,
-                      itemBuilder: (_, int index) {
-                        return CourseContainer(
-                          consultant: consultants[index],
-                        );
-                      },
-                      itemCount: consultants.length,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
