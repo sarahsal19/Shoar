@@ -21,8 +21,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Future<List<Category>> _fetchCategories() async {
     try {
       final response = await http.get(
-        Uri.parse('${ApiConstants.baseUrl}${ApiConstants.categoriesPath}'),
-      );
+      Uri.parse('${ApiConstants.baseUrl}${ApiConstants.categoriesPath}'),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': ApiConstants.apiKey,
+      },
+    );
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);

@@ -26,6 +26,10 @@ class _ConsultantsScreenState extends State<ConsultantsScreen> {
     try {
       final response = await http.get(
         Uri.parse('${ApiConstants.baseUrl}${ApiConstants.consultantsPath}/${ApiConstants.pathVariable}'),
+              headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': ApiConstants.apiKey,
+      },
       );
 
       if (response.statusCode == 200) {
