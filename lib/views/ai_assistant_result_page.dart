@@ -26,28 +26,32 @@ class _AiAssistanteResultsScreenState extends State<AiAssistantResults> {
   }
 
   Future<void> fetchData() async {
-    try {
-      final response = await http.get(
-        Uri.parse('${ApiConstants.baseUrl}${ApiConstants.consultantsPath}/${ApiConstants.pathVariable}'),
-      );
+  try {
+    final response = await http.get(
+      Uri.parse('${ApiConstants.baseUrl}${ApiConstants.consultantsPath}/${ApiConstants.pathVariable}'),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': ApiConstants.apiKey,
+      },
+    );
 
-      if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        final List<Consultant> fetchedConsultants =
-            data.map((consultantData) => Consultant.fromJson(consultantData)).toList();
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      final List<Consultant> fetchedConsultants =
+          data.map((consultantData) => Consultant.fromJson(consultantData)).toList();
 
-        setState(() {
-          consultants = fetchedConsultants;
-        });
-      } else {
-        // Handle error
-        print('Failed to fetch consultants: ${response.statusCode}');
-      }
-    } catch (e) {
-      // Handle exceptions
-      print('Error fetching consultants: $e');
+      setState(() {
+        consultants = fetchedConsultants;
+      });
+    } else {
+      // Handle error
+      print('Failed to fetch consultants: ${response.statusCode}');
     }
+  } catch (e) {
+    // Handle exceptions
+    print('Error fetching consultants: $e');
   }
+}
 
   @override
   Widget build(BuildContext context) {
