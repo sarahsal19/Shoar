@@ -13,11 +13,14 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.14.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   http: ^1.1.0
+  intl: ^0.17.0
 
   flutter_lints: ^2.0.0
   webview_flutter: ^4.4.2

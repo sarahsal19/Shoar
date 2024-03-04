@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1096723944975",
+    "project_id": "shooar-c4d0c",
+    "storage_bucket": "shooar-c4d0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096723944975:android:8885e0a13ec2a03d61357a",
+        "android_client_info": {
+          "package_name": "com.company.shooar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkkWzxqHYsy4b3ztNXk2IT3Aq0Y0CS-1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
