@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:Shoar/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'widgets/avatar.dart';
+import 'rating_page.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -13,14 +14,11 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Colors.transparent, // Set Scaffold background color to transparent
-
+      backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                "assets/images/background.png"), // Replace "assets/background_image.jpg" with your image path
+            image: AssetImage("assets/images/background.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -31,9 +29,7 @@ class _ChatPageState extends State<ChatPage> {
                 children: [
                   _topChat(),
                   _bodyChat(),
-                  SizedBox(
-                    height: 120,
-                  )
+                  SizedBox(height: 120),
                 ],
               ),
               _formChat(),
@@ -52,16 +48,21 @@ class _ChatPageState extends State<ChatPage> {
         children: [
           Row(
             children: [
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.black12,
-                ),
-                child: Icon(
-                  Icons.call,
-                  size: 25,
-                  color: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  _showFeedbackDialog(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.black12,
+                  ),
+                  child: Icon(
+                    Icons.close,
+                    size: 25,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               SizedBox(
@@ -86,9 +87,10 @@ class _ChatPageState extends State<ChatPage> {
               Text(
                 'رضا العيدروس',
                 style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
@@ -179,8 +181,6 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  // 0 = Send
-  // 1 = Recieved
   Widget _itemChat({int? chat, String? avatar, message, time}) {
     return Row(
       mainAxisAlignment:
@@ -248,47 +248,116 @@ class _ChatPageState extends State<ChatPage> {
           height: 120,
           padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           color: Colors.white,
-          child: TextField(
-            textAlign: TextAlign.right,
-            decoration: InputDecoration(
-              hintText: '...اكتب رسالتك',
-              prefixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.image_rounded),
-                    color: primaryColorTurquoise,
-                    onPressed: () {
-                      // Add image button action here
-                    },
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  textAlign: TextAlign.right,
+                  decoration: InputDecoration(
+                    hintText: '...اكتب رسالتك',
+                    prefixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.image_rounded),
+                          color: Color.fromARGB(255, 177, 178, 180),
+                          onPressed: () {
+                            // Add image button action here
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.mic_rounded),
+                          color: Color.fromARGB(255, 177, 178, 180),
+                          onPressed: () {
+                            // Add voice button action here
+                          },
+                        ),
+                      ],
+                    ),
+                    filled: true,
+                    fillColor: Colors.blueGrey[50],
+                    labelStyle: TextStyle(fontSize: 12),
+                    contentPadding: EdgeInsets.all(20),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: const Color.fromRGBO(236, 239, 241, 1),
+                      ),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: const Color.fromRGBO(236, 239, 241, 1),
+                      ),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.mic_rounded),
-                    color: primaryColorTurquoise,
-                    onPressed: () {
-                      // Add voice button action here
-                    },
+                ),
+              ),
+              SizedBox(width: 10),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(
+                    color: const Color.fromRGBO(236, 239, 241, 1),
                   ),
-                ],
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.send),
+                  onPressed: () {
+                    // Add send button action here
+                  },
+                ),
               ),
-              filled: true,
-              fillColor: Colors.blueGrey[50],
-              labelStyle: TextStyle(fontSize: 12),
-              contentPadding: EdgeInsets.all(20),
-              enabledBorder: OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: const Color.fromRGBO(236, 239, 241, 1)),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: const Color.fromRGBO(236, 239, 241, 1)),
-                borderRadius: BorderRadius.circular(25),
-              ),
-            ),
+            ],
           ),
         ),
       ),
+    );
+  }
+
+  _showFeedbackDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                'assets/images/rating.png',
+                width: 230, // Adjust the width as needed
+                height: 170,
+              ), // Add your image here
+              //Text('Title'), // Add your title text here
+            ],
+          ),
+          actions: [
+            Center(
+              // Wrap ElevatedButton with Center widget
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColorTurquoise.withOpacity(0.50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RatingPage()),
+                  );
+                },
+                child: Text(
+                  'تقييم الجلسة',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 246, 243, 243), // Set text color
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
